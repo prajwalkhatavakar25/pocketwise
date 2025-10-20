@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <title>Budgeting - PocketWise</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #1a1a1a;
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
+      header h2 {
+        font-weight: bold;
+      }
+       header h2 img {
+            height: 50px;
+            margin-right: 10px;
+        }
+      nav a {
+        margin: 5px 15px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      nav a:hover {
+        color: #00c853;
+      }
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        flex-wrap: wrap;
+      }
+      .hero-text {
+        max-width: 600px;
+        flex: 1;
+        margin-bottom: 20px;
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      .hero-text p {
+        color: #555;
+        margin-bottom: 25px;
+      }
+      .btn {
+        padding: 12px 24px;
+        background: #00c853;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #1a1a1a;
+      }
+      .content {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+      .content h2, .content h3 {
+        margin-top: 30px;
+        color: #00c853;
+      }
+      .content ul {
+        margin-left: 20px;
+      }
+      .content table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 15px;
+      }
+      .content th, .content td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+      }
+      .content th {
+        background: #f4f4f4;
+      }
+      details {
+        margin: 10px 0;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+      }
+      details summary {
+        font-weight: bold;
+        cursor: pointer;
+        color: #007BFF;
+      }
+      details[open] {
+        background: #eef6ff;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-text {
+          max-width: 100%;
+        }
+        .hero img {
+          margin-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2><img src="scholarship.png" alt="logo">PocketWise</h2>
+      <nav>
+        <a href="home1.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="tools.html">Tools</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Budgeting Basics</h1>
+        <p>Learn how to plan, track, and manage your money effectively to achieve financial stability and reach your goals.</p>
+        <button class="btn" onclick="welcomeUser('Welcome to Budgeting Basics!')">Start Learning</button>
+      </div>
+      <img src="budget.avif" alt="Budgeting" style="width:300px; border-radius:10px;">
+    </section>
+
+    <!-- Main Content -->
+    <section class="content">
+      <h2>Understanding Budgeting</h2>
+      <p>Budgeting is the process of creating a plan to manage your income and expenses. It helps you track where your money goes and ensures that you have enough funds for essential needs and future goals.</p>
+
+      <h3>Steps to Create a Budget:</h3>
+      <ul>
+        <li>Calculate your total monthly income.</li>
+        <li>List all your monthly expenses, including fixed and variable costs.</li>
+        <li>Set financial goals, such as saving for emergencies or paying off debt.</li>
+        <li>Spend money based on your priorities.</li>
+        <li>Review and adjust your budget regularly to stay on track.</li>
+      </ul>
+
+      <h3>Example: Student Monthly Budget</h3>
+      <table>
+        <tr><th>Category</th><th>Amount (₹)</th></tr>
+        <tr><td>Food</td><td>4000</td></tr>
+        <tr><td>Transport</td><td>2000</td></tr>
+        <tr><td>Books</td><td>1000</td></tr>
+        <tr><td>Entertainment</td><td>1000</td></tr>
+        <tr><td>Savings</td><td>2000</td></tr>
+      </table>
+
+      <h3>💡 Quick Tip: The 50/30/20 Rule</h3>
+      <p>This rule suggests allocating 50% of your income to needs, 30% to wants, and 20% to savings and debt repayment. It's a simple way to create a balanced budget.</p>
+
+      <h2>📘 Quick Glossary</h2>
+      <details>
+        <summary>Fixed Expenses</summary>
+        Costs that stay the same each month, like rent, loan EMI, or subscriptions.
+      </details>
+      <details>
+        <summary>Variable Expenses</summary>
+        Costs that change monthly, like food, entertainment, and shopping.
+      </details>
+      <details>
+        <summary>Emergency Fund</summary>
+        Money set aside for unexpected expenses, like medical bills or repairs.
+      </details>
+      <details>
+        <summary>Disposable Income</summary>
+        The amount of income left after taxes and essential expenses.
+      </details>
+      <details>
+        <summary>Debt Repayment</summary>
+        Money allocated to paying off credit cards, loans, or other borrowings.
+      </details>
+      <details>
+        <summary>Financial Goals</summary>
+        Targets you set for your money, such as buying a laptop, saving for travel, or retirement.
+      </details>
+    </section>
+
+    <script>
+      function welcomeUser(message) {
+        alert(message);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Quiz - PocketWise</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f7f9;
+      margin: 0;
+      padding: 0;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h2 {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .quiz-container {
+      background: #fff;
+      width: 60%;
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .quiz-container h3 {
+      margin-bottom: 25px;
+      color: #00c853;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 12px;
+      background: #00c853;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background: #00b14f;
+    }
+
+    .back-home {
+      display: block;
+      width: 200px;
+      margin: 40px auto;
+      padding: 12px;
+      text-align: center;
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-home:hover {
+      background: #00c853;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-container {
+        width: 90%;
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>PocketWise Quiz</h2>
+  </header>
+
+  <div class="quiz-container">
+    <h3 id="question">Loading question...</h3>
+    <div class="options" id="options"></div>
+  </div>
+  <a href="home1.html" class="back-home">⬅ Back to Home</a>
+  <script>
+    let quiz = [
+      {
+        question: "Q1: Saving money means keeping aside part of your income.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q2: EMI stands for Easy Money Investment.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q3: Budgeting helps you control your expenses.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q4: A credit score is a measure of your financial health.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q5: Investing in stocks is risk-free.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q6: Diversifying investments can reduce risk.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q7: A loan must always be repaid with interest.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q8: Emergency funds are unnecessary if you have insurance.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q9: Compound interest earns interest on both principal and interest.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q10: Financial planning is only for the wealthy.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q11: Credit cards should be paid off in full each month to avoid interest.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q12: Inflation decreases the purchasing power of money over time.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q13: A budget deficit occurs when expenses exceed income.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q14: Investing in real estate is always a safe investment.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q15: Retirement planning should start early in your career.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q16: A high credit score can help you get better loan terms.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q17: It's best to keep all your money in a savings account.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q18: Taxes have no impact on your investment returns.",
+        options: ["True", "False"],
+        answer: "False"
+      },
+      {
+        question: "Q19: Financial literacy is important for everyone.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+      {
+        question: "Q20: Setting financial goals can help improve your money management.",
+        options: ["True", "False"],
+        answer: "True"
+      },
+    ];
+
+    let i = 0;     
+  let score = 0;  
+
+  document.getElementById("question").innerText = quiz[i].question;
+  let optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  for (let j = 0; j < quiz[i].options.length; j++) {
+    let btn = document.createElement("button");
+    btn.innerText = quiz[i].options[j];
+    btn.onclick = function() { checkAnswer(quiz[i].options[j]); };
+    optionsDiv.appendChild(btn);
+  }
+
+  function checkAnswer(answer) {
+    if (answer === quiz[i].answer) {
+      alert("✅ Correct!");
+      score = score + 1;
+    } else {
+      alert("❌ Wrong! Correct answer: " + quiz[i].answer);
+    }
+
+    i = i + 1; 
+
+    if (i < quiz.length) {
+      
+      document.getElementById("question").innerText = quiz[i].question;
+      optionsDiv.innerHTML = "";
+      for (let j = 0; j < quiz[i].options.length; j++) {
+        let btn = document.createElement("button");
+        btn.innerText = quiz[i].options[j];
+        btn.onclick = function() { checkAnswer(quiz[i].options[j]); };
+        optionsDiv.appendChild(btn);
+      }
+    } else {
+      
+      document.getElementById("question").innerText = "🎉 Quiz Completed! Your Score: " + score + " / " + quiz.length;
+      optionsDiv.innerHTML = "";
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <title>Tips - PocketWise</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #1a1a1a;
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
+      header h2 {
+        font-weight: bold;
+      }
+       header h2 img {
+            height: 50px;
+            margin-right: 10px;
+        }
+      nav a {
+        margin: 5px 15px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      nav a:hover {
+        color: #00c853;
+      }
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        flex-wrap: wrap;
+      }
+      .hero-text {
+        max-width: 600px;
+        flex: 1;
+        margin-bottom: 20px;
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      .hero-text p {
+        color: #555;
+        margin-bottom: 25px;
+      }
+      .btn {
+        padding: 12px 24px;
+        background: #00c853;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #1a1a1a;
+      }
+      .content {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+      }
+      .content h2 {
+        margin-top: 30px;
+        color: #00c853;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .content ul {
+        margin-left: 20px;
+      }
+      .content a {
+        color: #007BFF;
+        text-decoration: none;
+      }
+      .content a:hover {
+        text-decoration: underline;
+      }
+      .quote {
+        text-align: center;
+        margin-top: 40px;
+        font-style: italic;
+        color: #333;
+      }
+      @media (max-width: 768px) {
+         .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-text {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2><img src="scholarship.png" alt="logo">PocketWise</h2>
+      <nav>
+        <a href="home1.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="tools.html">Tools</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Financial Tips</h1>
+        <p>Discover practical tips to manage your money better — from budgeting and investing to banking and loans.</p>
+        <button class="btn" onclick="welcomeUser('Welcome to Financial Tips!')">Start Reading</button>
+      </div>
+      <img src="financing.jpg" alt="Financial Tips" style="width:300px; border-radius:10px;">
+    </section>
+
+    <section class="content">
+      <h2><i class="fas fa-wallet"></i> Budgeting Tips</h2>
+      <ul>
+        <li>Track all your income and expenses every month.</li>
+        <li>Use the 50-30-20 rule to balance needs, wants, and savings.</li>
+        <li>Set spending limits and review them regularly.</li>
+      </ul>
+
+      <h2><i class="fas fa-chart-line"></i> Investing Tips</h2>
+      <ul>
+        <li>Start investing early to enjoy compound growth.</li>
+        <li>Diversify investments — don’t rely on a single option.</li>
+        <li>Think long-term instead of chasing quick profits.</li>
+      </ul>
+
+      <h2><i class="fas fa-university"></i> Banking Tips</h2>
+      <ul>
+        <li>Maintain a minimum balance to avoid extra charges.</li>
+        <li>Use online banking securely and check statements regularly.</li>
+        <li>Compare banks to get better interest rates.</li>
+      </ul>
+
+      <h2><i class="fas fa-credit-card"></i> Loan Tips</h2>
+      <ul>
+        <li>Borrow only when necessary, not just because you qualify for more.</li>
+        <li>Pay EMIs on time to protect your credit score.</li>
+        <li>Avoid taking multiple loans at once.</li>
+      </ul>
+
+      <h2><i class="fas fa-book"></i> Recommended Books</h2>
+      <ul>
+        <li><a href="https://www.goodreads.com/book/show/69571.Rich_Dad_Poor_Dad" target="_blank">Rich Dad Poor Dad – Robert Kiyosaki</a></li>
+        <li><a href="https://www.goodreads.com/book/show/106835.The_Intelligent_Investor" target="_blank">The Intelligent Investor – Benjamin Graham</a></li>
+        <li><a href="https://www.goodreads.com/book/show/41881472-the-psychology-of-money" target="_blank">The Psychology of Money – Morgan Housel</a></li>
+        <li><a href="https://www.goodreads.com/book/show/78428.Your_Money_or_Your_Life" target="_blank">Your Money or Your Life – Vicki Robin</a></li>
+        <li><a href="https://www.goodreads.com/book/show/30186948-think-and-grow-rich" target="_blank">Think and Grow Rich – Napoleon Hill</a></li>
+      </ul>
+
+      <div class="quote">
+        <h3>"Financial freedom is not a dream, it’s a result of discipline and smart choices."</h3>
+      </div>
+    </section>
+
+    <script>
+      function welcomeUser(message) {
+        alert(message);
+      }
+    </script>
+  </body>
+</html>

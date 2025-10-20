@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools - PocketWise</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f7f9;
+      color: #1a1a1a;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #1a1a1a;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+
+    header h2 {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    header h2 img {
+      height: 45px;
+      margin-right: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00c853;
+    }
+
+    .tools-hero {
+      text-align: center;
+      padding: 60px 30px;
+      background: linear-gradient(to right, #00c853, #a5d6a7);
+      color: white;
+    }
+
+    .tools-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .tools-hero p {
+      font-size: 1.1rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0;
+      background: #ddd;
+      margin: 0 5px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: #00c853;
+      color: white;
+    }
+
+    .tool-container {
+      max-width: 700px;
+      margin: 0 auto 60px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    .tool-container.active {
+      display: block;
+    }
+
+    .tool-container h2 {
+      text-align: center;
+      color: #00c853;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00c853;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #009d43;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 1.2rem;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #00c853;
+      color: white;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .tool-container {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><img src="scholarship.png" alt="logo"> PocketWise</h2>
+    <nav>
+      <a href="home1.html">Home</a>
+      <a href="learn.html">Learn</a>
+      <a href="tools.html">Tools</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="tools-hero">
+    <h1>Finance Tools</h1>
+    <p>EMI Calculator, Savings Goal Planner, and Expense Tracker — all in one page.</p>
+  </section>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTool('emi')">EMI Calculator</div>
+    <div class="tab" onclick="showTool('savings')">Savings Goal</div>
+    <div class="tab" onclick="showTool('expense')">Expense Tracker</div>
+  </div>
+
+  <!-- EMI Calculator -->
+  <section id="emi" class="tool-container active">
+    <h2>EMI Calculator</h2>
+    <label for="loanAmount">Loan Amount (₹)</label>
+    <input type="number" id="loanAmount" placeholder="Enter loan amount">
+
+    <label for="interestRate">Annual Interest Rate (%)</label>
+    <input type="number" id="interestRate" placeholder="Enter interest rate">
+
+    <label for="loanTenure">Loan Tenure (Years)</label>
+    <input type="number" id="loanTenure" placeholder="Enter tenure in years">
+
+    <button onclick="calculateEMI()">Calculate EMI</button>
+    <div class="result" id="emiResult"></div>
+  </section>
+
+  <!-- Savings Goal -->
+  <section id="savings" class="tool-container">
+    <h2>Savings Goal Calculator</h2>
+    <label for="goalAmount">Goal Amount (₹)</label>
+    <input type="number" id="goalAmount" placeholder="Enter your goal amount">
+
+    <label for="years">Time Period (Years)</label>
+    <input type="number" id="years" placeholder="Enter number of years">
+
+    <label for="rate">Expected Annual Interest Rate (%)</label>
+    <input type="number" id="rate" placeholder="Enter interest rate">
+
+    <button onclick="calculateSavings()">Calculate</button>
+    <div class="result" id="savingsResult"></div>
+  </section>
+
+  <!-- Expense Tracker -->
+  <section id="expense" class="tool-container">
+    <h2>Expense Tracker</h2>
+    <label for="expenseName">Expense Name</label>
+    <input type="text" id="expenseName" placeholder="E.g. Groceries, Bus fare">
+
+    <label for="expenseAmount">Amount (₹)</label>
+    <input type="number" id="expenseAmount" placeholder="Enter amount">
+
+    <label for="expenseCategory">Category</label>
+    <select id="expenseCategory">
+      <option value="Food">Food</option>
+      <option value="Transport">Transport</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Bills">Bills</option>
+      <option value="Shopping">Shopping</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <button onclick="addExpense()">Add Expense</button>
+
+    <table id="expenseTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Amount (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="total" id="totalExpense">Total: ₹0</div>
+  </section>
+
+  <footer>
+    © 2025 PocketWise | All rights reserved
+  </footer>
+
+  <script>
+    // Tab Switching
+    function showTool(tool) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tool-container').forEach(c => c.classList.remove('active'));
+
+      document.querySelector('.tab[onclick*="' + tool + '"]').classList.add('active');
+      document.getElementById(tool).classList.add('active');
+    }
+
+    // EMI Calculator
+    function calculateEMI() {
+      const loanAmount = parseFloat(document.getElementById("loanAmount").value);
+      const annualRate = parseFloat(document.getElementById("interestRate").value);
+      const years = parseFloat(document.getElementById("loanTenure").value);
+
+      if (isNaN(loanAmount) || isNaN(annualRate) || isNaN(years) || loanAmount <= 0 || annualRate <= 0 || years <= 0) {
+        document.getElementById("emiResult").innerText = "Please enter valid details.";
+        return;
+      }
+
+      const monthlyRate = annualRate / 12 / 100;
+      const months = years * 12;
+      const emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      const totalPayment = emi * months;
+      const totalInterest = totalPayment - loanAmount;
+
+      document.getElementById("emiResult").innerHTML = `
+        <p>📅 Monthly EMI: ₹${emi.toFixed(2)}</p>
+        <p>💰 Total Payment: ₹${totalPayment.toFixed(2)}</p>
+        <p>🏦 Total Interest: ₹${totalInterest.toFixed(2)}</p>
+      `;
+    }
+
+    // Savings Goal Calculator
+    function calculateSavings() {
+      const goalAmount = parseFloat(document.getElementById('goalAmount').value);
+      const years = parseFloat(document.getElementById('years').value);
+      const annualRate = parseFloat(document.getElementById('rate').value);
+
+      if (isNaN(goalAmount) || isNaN(years) || isNaN(annualRate) || goalAmount <= 0 || years <= 0 || annualRate < 0) {
+        document.getElementById('savingsResult').innerText = "Please enter valid inputs.";
+        return;
+      }
+
+      const months = years * 12;
+      const monthlyRate = annualRate / 12 / 100;
+      const monthlySavings = (goalAmount * monthlyRate) / ((Math.pow(1 + monthlyRate, months) - 1) * (1 + monthlyRate));
+
+      document.getElementById('savingsResult').innerHTML = `
+        <p>💰 You need to save ₹${monthlySavings.toFixed(2)} per month</p>
+        <p>📅 for ${years} years at ${annualRate}% interest to reach ₹${goalAmount.toFixed(2)}</p>
+      `;
+    }
+
+    // Expense Tracker
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+    function renderExpenses() {
+      const tableBody = document.querySelector("#expenseTable tbody");
+      tableBody.innerHTML = "";
+      let total = 0;
+
+      expenses.forEach((exp, index) => {
+        total += exp.amount;
+        const row = `
+          <tr>
+            <td>${exp.name}</td>
+            <td>${exp.category}</td>
+            <td>₹${exp.amount.toFixed(2)}</td>
+            <td><button onclick="deleteExpense(${index})" style="background:#ff5252;color:white;border:none;border-radius:4px;padding:5px 10px;cursor:pointer;">Delete</button></td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+
+      document.getElementById("totalExpense").innerText = `Total: ₹${total.toFixed(2)}`;
+      localStorage.setItem("expenses", JSON.stringify(expenses));
+    }
+
+    function addExpense() {
+      const name = document.getElementById("expenseName").value.trim();
+      const amount = parseFloat(document.getElementById("expenseAmount").value);
+      const category = document.getElementById("expenseCategory").value;
+
+      if (!name || isNaN(amount) || amount <= 0) {
+        alert("Please enter valid expense details!");
+        return;
+      }
+
+      expenses.push({ name, amount, category });
+      document.getElementById("expenseName").value = "";
+      document.getElementById("expenseAmount").value = "";
+      renderExpenses();
+    }
+
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      renderExpenses();
+    }
+
+    renderExpenses();
+  </script>
+
+</body>
+</html>

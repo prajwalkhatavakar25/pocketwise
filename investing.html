@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Investing - PocketWise</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #1a1a1a;
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
+      header h2 {
+        font-weight: bold;
+      }
+       header h2 img {
+            height: 50px;
+            margin-right: 10px;
+        }
+      nav a {
+        margin: 5px 15px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      nav a:hover {
+        color: #00c853;
+      }
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        flex-wrap: wrap;
+      }
+      .hero-text {
+        max-width: 600px;
+        flex: 1;
+        margin-bottom: 20px;
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      .hero-text p {
+        color: #555;
+        margin-bottom: 25px;
+      }
+      .btn {
+        padding: 12px 24px;
+        background: #00c853;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #1a1a1a;
+      }
+      .content {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+      }
+      .content h2 {
+        margin-top: 30px;
+        color: #00c853;
+      }
+      .content ul {
+        margin-left: 20px;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-text {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2><img src="scholarship.png" alt="logo"> PocketWise</h2>
+      <nav>
+        <a href="home1.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="tools.html">Tools</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Investing Basics</h1>
+        <p>Learn how to grow your wealth, diversify your portfolio, and start your journey toward financial freedom.</p>
+        <button class="btn" onclick="welcomeUser('Welcome to Investing Basics!')">Start Learning</button>
+      </div>
+      <img src="investingg.jpg" alt="Investing" style="width:300px; border-radius:10px;">
+    </section>
+    <section class="content">
+      <h2>Understanding Investment</h2>
+      <p>
+        Investment is the act of allocating resources, usually money, with the expectation of generating an income or profit. 
+        It involves purchasing assets such as stocks, bonds, real estate, or mutual funds that have the potential to appreciate in value over time.
+      </p>
+
+      <h2>Types of Investments</h2>
+      <ul>
+        <li><b>Stocks:</b> Ownership in a company and a share in its profits.</li>
+        <li><b>Bonds:</b> Debt securities that pay fixed interest.</li>
+        <li><b>Mutual Funds:</b> Pools of money invested in diversified assets.</li>
+        <li><b>Real Estate:</b> Property for rental income or value growth.</li>
+        <li><b>ETFs:</b> Exchange-traded funds similar to mutual funds.</li>
+      </ul>
+
+      <h2>Benefits of Investing</h2>
+      <ul>
+        <li><b>Wealth Growth:</b> Grow your money through capital gains.</li>
+        <li><b>Income Generation:</b> Earn dividends or interest.</li>
+        <li><b>Diversification:</b> Reduce risk with different assets.</li>
+        <li><b>Inflation Hedge:</b> Protect your purchasing power.</li>
+      </ul>
+
+      <h2>Getting Started</h2>
+      <ul>
+        <li>Set financial goals and assess your risk tolerance.</li>
+        <li>Create a budget for regular investments.</li>
+        <li>Research different investment options.</li>
+        <li>Diversify across assets.</li>
+        <li>Monitor and adjust your portfolio.</li>
+      </ul>
+    </section>
+
+    <script>
+      function welcomeUser(message) {
+        alert(message);
+      }
+    </script>
+  </body>
+</html>

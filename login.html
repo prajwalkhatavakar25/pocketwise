@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <title>Login - PocketWise</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: url('cover.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 40px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      }
+
+      .login-container h2 {
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+        color: #f0f0f0;
+      }
+
+      .login-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ddd;
+        text-align: left;
+      }
+
+      .login-container input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .login-container input:focus {
+        border-color: #1a73e8;
+        outline: none;
+        box-shadow: 0 0 5px #1a73e8;
+      }
+
+      .login-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #00c853;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .login-container button:hover {
+        background-color: #39ea15;
+      }
+
+      .login-container p {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      .login-container a {
+        color: #ff6b6b;
+        text-decoration: none;
+      }
+
+      .login-container a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <h2>Login to Your Account</h2>
+      <form onsubmit="return validateform()" action="home1.html">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="Enter your username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p>
+        Don't have an account? 
+        <a href="registractionforms.html">Register here</a>
+      </p>
+      <p>
+        <a href="#">Forgot Password?</a>
+      </p>
+    </div>
+  </body>
+   <script>
+            function validateform() {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                var usernamePattern = /^[A-Za-z]{3,10}$/;
+                var passwordPattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+                if (!usernamePattern.test(username)) {
+                    alert("Username must contain only letters (3-10 characters).");
+                    return false;
+                }
+                if (!passwordPattern.test(password)) {
+                    alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number.");
+                    return false;
+                }
+                alert("Login Successful");
+                return true;
+            }
+        </script>
+</html>

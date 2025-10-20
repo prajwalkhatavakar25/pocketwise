@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>Loans - PocketWise</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #1a1a1a;
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
+      header h2 {
+        font-weight: bold;
+      }
+        header h2 img {
+              height: 50px;
+              margin-right: 10px;
+          }
+      nav a {
+        margin: 5px 15px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      nav a:hover {
+        color: #00c853;
+      }
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        flex-wrap: wrap;
+      }
+      .hero-text {
+        max-width: 600px;
+        flex: 1;
+        margin-bottom: 20px;
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      .hero-text p {
+        color: #555;
+        margin-bottom: 25px;
+      }
+      .btn {
+        padding: 12px 24px;
+        background: #00c853;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background:#1a1a1a;
+      }
+      .content {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+      }
+      .content h2 {
+        margin-top: 30px;
+        color: #00c853;
+      }
+      .content ul {
+        margin-left: 20px;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-text {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2><img src="scholarship.png" alt="logo">PocketWise</h2>
+      <nav>
+        <a href="home1.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="tools.html">Tools</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Loans Basics</h1>
+        <p>Understand loans, their types, terms, benefits, and risks. Learn how to borrow wisely and manage repayments effectively.</p>
+        <button class="btn" onclick="welcomeUser('Welcome to Loans Basics!')">Start Learning</button>
+      </div>
+      <img src="Loanz.avif" alt="Loans" style="width:300px; border-radius:10px;">
+    </section>
+
+    <section class="content">
+      <h2>What is a Loan?</h2>
+      <p>
+        A <b>loan</b> is money borrowed from a bank, financial institution, or individual 
+        that must be paid back with interest over a certain period of time.
+      </p>
+
+      <h2>Types of Loans</h2>
+      <ul>
+        <li><b>Personal Loan:</b> For needs like medical bills, education, or travel.</li>
+        <li><b>Home Loan:</b> To buy or build a house.</li>
+        <li><b>Education Loan:</b> To pay for higher education.</li>
+        <li><b>Car/Vehicle Loan:</b> To buy a car, bike, or other vehicle.</li>
+        <li><b>Business Loan:</b> To start or expand a business.</li>
+        <li><b>Gold/Collateral Loan:</b> Money borrowed by pledging gold or assets.</li>
+      </ul>
+
+      <h2>Important Loan Terms</h2>
+      <ul>
+        <li><b>Principal:</b> The original amount borrowed.</li>
+        <li><b>Interest:</b> Extra money you pay to the lender for using their money.</li>
+        <li><b>Tenure:</b> The time period to repay the loan.</li>
+        <li><b>EMI (Equated Monthly Installment):</b> Fixed monthly payment of principal + interest.</li>
+        <li><b>Collateral:</b> Asset pledged for security (not required for all loans).</li>
+      </ul>
+
+      <h2>Pros of Loans</h2>
+      <ul>
+        <li>✔ Helps achieve big goals (education, home, business).</li>
+        <li>✔ Provides immediate funds when needed.</li>
+        <li>✔ Flexible repayment options.</li>
+      </ul>
+
+      <h2>Cons of Loans</h2>
+      <ul>
+        <li>✘ High interest rates may increase cost.</li>
+        <li>✘ Late payments can affect your <b>credit score</b>.</li>
+        <li>✘ Risk of losing assets if collateral is used.</li>
+      </ul>
+
+      <h2>Tips Before Taking a Loan</h2>
+      <ul>
+        <li>Borrow only what you can repay.</li>
+        <li>Compare interest rates from different banks.</li>
+        <li>Read terms and conditions carefully.</li>
+        <li>Always pay EMIs on time to avoid penalties.</li>
+      </ul>
+
+      <p><b>👉 Remember:</b> Loans are useful, but they should be taken wisely. Borrow smart, repay on time, and avoid unnecessary debt.</p>
+    </section>
+
+    <script>
+      function welcomeUser(message) {
+        alert(message);
+      }
+    </script>
+  </body>
+</html>
