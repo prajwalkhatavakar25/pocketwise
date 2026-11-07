@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,7 +8,7 @@ import {
   Tooltip,
 } from 'recharts'
 import { ArrowUpRight } from 'lucide-react'
-import { cashFlowHistory } from '../data/dashboardData'
+import { useDashboard } from '../context/useDashboard'
 import { formatINR } from '../utils/formatters'
 
 /**
@@ -54,9 +53,15 @@ function CustomTooltip({ active, payload, label }) {
  * CashFlowChart Component
  * Visualizes monthly income vs expenditure using an AreaChart with
  * Neon Lime (#C6FF4D) for primary inflow and Warm Beige (#AFA58F) for outflow.
+ * Dynamically sliced by timeframe (3M, 6M, 1Y).
  */
 export default function CashFlowChart() {
-  const [activeFilter, setActiveFilter] = useState('6M')
+  const { timeframe, setTimeframe, activeCashFlowData } = useDashboard()
+
+  const latestMonth = activeCashFlowData[activeCashFlowData.length - 1]
+  const currentSavingsRate = latestMonth
+    ? Math.round(((latestMonth.income - latestMonth.expenses) / latestMonth.income) * 100)
+    : 63
 
   return (
     <div className="rounded-xl border border-[#302F28] bg-[#191916] p-5 sm:p-6">
@@ -69,7 +74,7 @@ export default function CashFlowChart() {
             </h3>
             <span className="inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-medium text-[#E8DFC9] bg-[#211F1A] border border-[#302F28] tabular-nums">
               <ArrowUpRight className="h-3 w-3 text-[#C6FF4D]" />
-              63% savings rate
+              {currentSavingsRate}% savings rate
             </span>
           </div>
           <p className="text-xs text-[#AFA58F] mt-0.5">
@@ -97,9 +102,9 @@ export default function CashFlowChart() {
               <button
                 key={filter}
                 type="button"
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => setTimeframe(filter)}
                 className={`rounded px-2.5 py-1 transition-colors cursor-pointer ${
-                  activeFilter === filter
+                  timeframe === filter
                     ? 'bg-[#211F1A] text-[#E8DFC9]'
                     : 'text-[#777263] hover:text-[#E8DFC9]'
                 }`}
@@ -115,7 +120,7 @@ export default function CashFlowChart() {
       <div className="h-72 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
-            data={cashFlowHistory}
+            data={activeCashFlowData}
             margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
           >
             <defs>

@@ -63,18 +63,31 @@ describe('Transactions Ledger Operations', () => {
     assert.strictEqual(groc[0].title, 'Grocery Supplies')
   })
 
-  it('calculates totals correctly from a list of transactions', () => {
+  it('calculates totals correctly from a list of transactions using integer paise arithmetic', () => {
     const totals = calculateLedgerTotals(sampleTransactions)
     assert.strictEqual(totals.totalInflow, 100000)
     assert.strictEqual(totals.totalOutflow, 30000)
     assert.strictEqual(totals.netBalance, 70000)
+
+    // Test with fractional values to ensure no floating point inaccuracy (e.g. 0.1 + 0.2)
+    const fractionalTx = [
+      { id: '1', amount: 10.10, type: 'income' },
+      { id: '2', amount: 20.20, type: 'income' },
+      { id: '3', amount: 15.15, type: 'expense' },
+    ]
+    const fracTotals = calculateLedgerTotals(fractionalTx)
+    assert.strictEqual(fracTotals.totalInflow, 30.30)
+    assert.strictEqual(fracTotals.totalOutflow, 15.15)
+    assert.strictEqual(fracTotals.netBalance, 15.15)
   })
 
   it('validates transaction input fields', () => {
     assert.strictEqual(validateTransactionInput({ title: '', amount: 100 }).isValid, false)
     assert.strictEqual(validateTransactionInput({ title: 'Test', amount: -5 }).isValid, false)
     assert.strictEqual(validateTransactionInput({ title: 'Test', amount: 0 }).isValid, false)
-    assert.strictEqual(validateTransactionInput({ title: 'Salary', amount: 50000 }).isValid, true)
+    assert.strictEqual(validateTransactionInput({ title: 'Test', amount: 'abc' }).isValid, false)
+    assert.strictEqual(validateTransactionInput({ title: 'Test', amount: 50, category: '' }).isValid, false)
+    assert.strictEqual(validateTransactionInput({ title: 'Salary', amount: 50000, category: 'Income' }).isValid, true)
   })
 
   it('creates a formatted transaction record with valid defaults', () => {

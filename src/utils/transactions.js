@@ -43,28 +43,49 @@ export function filterTransactions(transactions = [], criteria = {}) {
 }
 
 /**
- * Computes aggregated ledger totals (inflow, outflow, and net balance).
+ * Converts a rupee amount to integer paise to eliminate floating-point calculation errors.
+ * 
+ * @param {number|string} rupees
+ * @returns {number} Integer paise
+ */
+export function toPaise(rupees) {
+  const num = Number(rupees) || 0
+  return Math.round(num * 100)
+}
+
+/**
+ * Converts integer paise back to rupee float with two decimals.
+ * 
+ * @param {number} paise
+ * @returns {number} Rupees
+ */
+export function fromPaise(paise) {
+  return (Math.round(paise) || 0) / 100
+}
+
+/**
+ * Computes aggregated ledger totals (inflow, outflow, and net balance) using integer paise arithmetic.
  * 
  * @param {Array<Object>} transactions
  * @returns {{ totalInflow: number, totalOutflow: number, netBalance: number }}
  */
 export function calculateLedgerTotals(transactions = []) {
-  let totalInflow = 0
-  let totalOutflow = 0
+  let totalInflowPaise = 0
+  let totalOutflowPaise = 0
 
   for (const tx of transactions) {
-    const amount = Number(tx.amount) || 0
+    const amountPaise = toPaise(tx.amount)
     if (tx.type === 'income') {
-      totalInflow += amount
+      totalInflowPaise += amountPaise
     } else {
-      totalOutflow += amount
+      totalOutflowPaise += amountPaise
     }
   }
 
   return {
-    totalInflow,
-    totalOutflow,
-    netBalance: totalInflow - totalOutflow,
+    totalInflow: fromPaise(totalInflowPaise),
+    totalOutflow: fromPaise(totalOutflowPaise),
+    netBalance: fromPaise(totalInflowPaise - totalOutflowPaise),
   }
 }
 
@@ -80,8 +101,12 @@ export function validateTransactionInput(input = {}) {
   }
 
   const numAmount = Number(input.amount)
-  if (isNaN(numAmount) || numAmount <= 0) {
-    return { isValid: false, error: 'Amount must be a positive number greater than 0.' }
+  if (isNaN(numAmount) || !isFinite(numAmount) || numAmount <= 0) {
+    return { isValid: false, error: 'Amount must be a valid positive number greater than 0.' }
+  }
+
+  if (input.category !== undefined && !input.category.trim()) {
+    return { isValid: false, error: 'Category is required.' }
   }
 
   return { isValid: true }
@@ -122,7 +147,10 @@ export function createTransactionRecord(input = {}) {
     category,
     date: input.date || timeString,
     amount: Number(input.amount),
-    type: input.type === 'income' ? 'income' : 'expense',
+    type: input.type === 'income' ? 'income' : input.type === 'transfer' ? 'transfer' : 'expense',
+    accountId: input.accountId || 'acc-1',
+    toAccountId: input.toAccountId || undefined,
+    notes: input.notes ? input.notes.trim() : undefined,
     iconName: categoryIcons[category] || 'CreditCard',
     status: 'Completed',
   }
