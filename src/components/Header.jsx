@@ -4,13 +4,14 @@ import {
   Bell,
   Plus,
   Calendar,
-  ChevronDown,
+  X,
 } from 'lucide-react'
+import { useDashboard } from '../context/useDashboard'
 
 /**
  * Header Component
  * Minimal 64px header (#0A0A09) with warm beige typography (#E8DFC9),
- * 4px-grid controls (36px height), and one quiet neon lime primary action (#C6FF4D).
+ * 4px-grid controls (36px height), live search, and one quiet neon lime primary action (#C6FF4D).
  * 
  * @param {Object} props
  * @param {string} [props.title='Dashboard Overview']
@@ -20,6 +21,13 @@ export default function Header({
   title = 'Dashboard Overview',
   onToggleMobileMenu,
 }) {
+  const {
+    searchQuery,
+    setSearchQuery,
+    clearSearch,
+    setIsAddTxModalOpen,
+  } = useDashboard()
+
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[#302F28] bg-[#0A0A09]/95 px-4 sm:px-6 lg:px-8 backdrop-blur-md">
       {/* Left: Mobile Menu Toggle + Title */}
@@ -45,7 +53,7 @@ export default function Header({
         </div>
       </div>
 
-      {/* Right: Search, Date Selector, Notifications, Primary Action */}
+      {/* Right: Search, Date Indicator, Notifications, Primary Action */}
       <div className="flex items-center gap-2.5 sm:gap-3">
         {/* Search Bar on 4px grid (h-9 = 36px) */}
         <div className="relative hidden md:block">
@@ -53,15 +61,26 @@ export default function Header({
           <input
             type="text"
             placeholder="Search transactions"
-            className="h-9 w-56 xl:w-64 rounded-lg border border-[#302F28] bg-[#191916] pl-9 pr-3 text-xs text-[#E8DFC9] placeholder-[#777263] focus:border-[#777263] focus:outline-none transition-colors"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="h-9 w-56 xl:w-64 rounded-lg border border-[#302F28] bg-[#191916] pl-9 pr-8 text-xs text-[#E8DFC9] placeholder-[#777263] focus:border-[#777263] focus:outline-none transition-colors"
           />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              aria-label="Clear search"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#777263] hover:text-[#E8DFC9] cursor-pointer"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          )}
         </div>
 
-        {/* Global Date Selector */}
+        {/* Global Reporting Period Badge */}
         <div className="hidden sm:flex h-9 items-center gap-2 rounded-lg border border-[#302F28] bg-[#191916] px-3 text-xs font-medium text-[#E8DFC9]">
           <Calendar className="h-3.5 w-3.5 text-[#AFA58F]" />
           <span>November 2026</span>
-          <ChevronDown className="h-3 w-3 text-[#777263]" />
         </div>
 
         {/* Notifications Icon with Quiet Status Dot */}
@@ -77,6 +96,7 @@ export default function Header({
         {/* Add Transaction Primary Action */}
         <button
           type="button"
+          onClick={() => setIsAddTxModalOpen(true)}
           className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#C6FF4D] px-3.5 text-xs font-semibold text-[#0A0A09] shadow-xs hover:bg-[#b8f53d] active:scale-98 transition-all cursor-pointer"
         >
           <Plus className="h-4 w-4 stroke-[2.2]" />

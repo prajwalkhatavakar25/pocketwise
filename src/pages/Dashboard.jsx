@@ -4,14 +4,16 @@ import CashFlowChart from '../components/CashFlowChart'
 import RecentTransactions from '../components/RecentTransactions'
 import BudgetOverview from '../components/BudgetOverview'
 import SavingsGoals from '../components/SavingsGoals'
-import { summaryMetrics } from '../data/dashboardData'
+import { useDashboard } from '../context/useDashboard'
 
 /**
  * Dashboard Page
- * Unslop-refined financial overview for November 2026.
- * Clean, number-first layout with zero duplicate headers or artificial transfers.
+ * Centralized financial overview for November 2026.
+ * Dynamic summary calculations, real CSV export, live ledger search, and modal interactions.
  */
 export default function Dashboard() {
+  const { summaryMetrics, exportStatementCSV } = useDashboard()
+
   return (
     <div className="space-y-6">
       {/* 1. Contextual Period Title & Legitimate Secondary Action */}
@@ -28,10 +30,11 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Quiet Secondary Action */}
+        {/* Quiet Secondary Action: Real CSV Export */}
         <div className="flex items-center gap-2.5">
           <button
             type="button"
+            onClick={exportStatementCSV}
             className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#302F28] bg-[#191916] px-3.5 text-xs font-medium text-[#E8DFC9] hover:bg-[#211F1A] hover:border-[#777263] transition-colors cursor-pointer"
           >
             <Download className="h-3.5 w-3.5 text-[#AFA58F]" />

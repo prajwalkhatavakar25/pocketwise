@@ -40,6 +40,12 @@ export const summaryMetrics = [
 ]
 
 export const cashFlowHistory = [
+  { month: 'Dec 25', income: 145000, expenses: 62000, savings: 83000 },
+  { month: 'Jan', income: 150000, expenses: 64000, savings: 86000 },
+  { month: 'Feb', income: 152000, expenses: 63000, savings: 89000 },
+  { month: 'Mar', income: 155000, expenses: 65000, savings: 90000 },
+  { month: 'Apr', income: 158000, expenses: 66000, savings: 92000 },
+  { month: 'May', income: 160000, expenses: 67000, savings: 93000 },
   { month: 'Jun', income: 165000, expenses: 69000, savings: 96000 },
   { month: 'Jul', income: 170000, expenses: 75000, savings: 95000 },
   { month: 'Aug', income: 175000, expenses: 71000, savings: 104000 },

@@ -1,16 +1,18 @@
 import { AlertCircle, CheckCircle2 } from 'lucide-react'
-import { budgetCategories } from '../data/dashboardData'
+import { useDashboard } from '../context/useDashboard'
 import { formatINR, calculateBudgetStatus } from '../utils/formatters'
 
 /**
  * BudgetOverview Component
  * Displays spending caps and usage progress for November 2026
- * using warm beige typography and tabular numerals.
+ * using warm beige typography, tabular numerals, and dynamic context state.
  */
 export default function BudgetOverview() {
+  const { budgetCategories } = useDashboard()
+
   const totalAllocated = budgetCategories.reduce((acc, b) => acc + b.allocated, 0)
   const totalSpent = budgetCategories.reduce((acc, b) => acc + b.spent, 0)
-  const overallUsage = Math.round((totalSpent / totalAllocated) * 100)
+  const overallUsage = totalAllocated > 0 ? Math.round((totalSpent / totalAllocated) * 100) : 0
 
   return (
     <div className="rounded-xl border border-[#302F28] bg-[#191916] p-5 sm:p-6">
@@ -39,13 +41,13 @@ export default function BudgetOverview() {
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#211F1A]">
           <div
             className="h-full rounded-full bg-[#C6FF4D] transition-all duration-300"
-            style={{ width: `${overallUsage}%` }}
+            style={{ width: `${Math.min(overallUsage, 100)}%` }}
           />
         </div>
         <div className="flex items-center justify-between text-[11px] text-[#AFA58F] mt-2">
           <span className="tabular-nums">{overallUsage}% utilized</span>
           <span className="text-[#E8DFC9] font-medium tabular-nums">
-            {formatINR(totalAllocated - totalSpent, { decimals: 0 })} buffer remaining
+            {formatINR(Math.max(0, totalAllocated - totalSpent), { decimals: 0 })} buffer remaining
           </span>
         </div>
       </div>
@@ -95,7 +97,7 @@ export default function BudgetOverview() {
               <div className="flex justify-between text-[10px] text-[#777263] tabular-nums">
                 <span>{percentage}% spent</span>
                 <span>
-                  {formatINR(category.allocated - category.spent, { decimals: 0 })} left
+                  {formatINR(Math.max(0, category.allocated - category.spent), { decimals: 0 })} left
                 </span>
               </div>
             </div>
