@@ -45,3 +45,4 @@ describe('Cash Flow Chart Timeframe Slicing', () => {
     assert.strictEqual(sliced.length, 6)
   })
 })
+

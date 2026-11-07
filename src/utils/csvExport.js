@@ -88,3 +88,4 @@ export function downloadTransactionsCSV(transactions = [], filename = 'PocketWis
 
   return true
 }
+

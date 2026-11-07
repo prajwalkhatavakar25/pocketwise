@@ -1,8 +1,12 @@
+import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard,
+  Wallet,
   CreditCard,
   PieChart,
   Target,
+  CalendarClock,
+  Compass,
   BarChart3,
   GraduationCap,
   Settings,
@@ -10,19 +14,18 @@ import {
   X,
   ShieldCheck,
 } from 'lucide-react'
+import { useDashboard } from '../context/useDashboard'
 
 const navigationItems = [
-  { name: 'Dashboard', icon: LayoutDashboard, id: 'dashboard', active: true },
-  { name: 'Transactions', icon: CreditCard, id: 'transactions', active: false },
-  { name: 'Budgets', icon: PieChart, id: 'budgets', active: false },
-  { name: 'Savings Goals', icon: Target, id: 'goals', active: false },
-  { name: 'Analytics', icon: BarChart3, id: 'analytics', active: false },
-  { name: 'Financial Academy', icon: GraduationCap, id: 'academy', active: false },
-]
-
-const utilityItems = [
-  { name: 'Settings', icon: Settings, id: 'settings' },
-  { name: 'Support', icon: HelpCircle, id: 'support' },
+  { name: 'Dashboard', to: '/', icon: LayoutDashboard, end: true },
+  { name: 'Accounts', to: '/accounts', icon: Wallet },
+  { name: 'Transactions', to: '/transactions', icon: CreditCard },
+  { name: 'Budgets', to: '/budgets', icon: PieChart },
+  { name: 'Savings Goals', to: '/goals', icon: Target },
+  { name: 'Recurring Payments', to: '/recurring', icon: CalendarClock },
+  { name: 'Financial Planning', to: '/planning', icon: Compass },
+  { name: 'Analytics', to: '/analytics', icon: BarChart3 },
+  { name: 'Financial Academy', to: '/academy', icon: GraduationCap },
 ]
 
 /**
@@ -35,6 +38,17 @@ const utilityItems = [
  * @param {() => void} [props.onClose] - Close handler for mobile drawer
  */
 export default function Sidebar({ isOpen = false, onClose }) {
+  const { setNotification } = useDashboard()
+
+  const handlePhase3Notice = (featureName) => {
+    if (setNotification) {
+      setNotification({
+        type: 'info',
+        message: `${featureName} is deferred to Phase 3: Platform Settings & Preferences.`,
+      })
+    }
+  }
+
   return (
     <>
       {/* Mobile Backdrop */}
@@ -68,7 +82,7 @@ export default function Sidebar({ isOpen = false, onClose }) {
                 PocketWise
               </span>
               <p className="text-[10px] font-normal text-[#777263] leading-tight mt-0.5">
-                Your Money. Your Decisions. Your Future.
+                Your Money. Your Decisions.
               </p>
             </div>
           </div>
@@ -96,27 +110,39 @@ export default function Sidebar({ isOpen = false, onClose }) {
               {navigationItems.map((item) => {
                 const Icon = item.icon
                 return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`group flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs font-medium transition-colors cursor-pointer ${
-                      item.active
-                        ? 'bg-[#191916] text-[#E8DFC9] border border-[#302F28]'
-                        : 'border border-transparent text-[#AFA58F] hover:bg-[#191916]/60 hover:text-[#E8DFC9]'
-                    }`}
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.end}
+                    onClick={() => {
+                      if (onClose) onClose()
+                    }}
+                    className={({ isActive }) =>
+                      `group flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs font-medium transition-colors cursor-pointer ${
+                        isActive
+                          ? 'bg-[#191916] text-[#E8DFC9] border border-[#302F28]'
+                          : 'border border-transparent text-[#AFA58F] hover:bg-[#191916]/60 hover:text-[#E8DFC9]'
+                      }`
+                    }
                   >
-                    <div className="flex items-center gap-2.5">
-                      <Icon
-                        className={`h-4 w-4 shrink-0 transition-colors ${
-                          item.active ? 'text-[#C6FF4D]' : 'text-[#AFA58F] group-hover:text-[#E8DFC9]'
-                        }`}
-                      />
-                      <span>{item.name}</span>
-                    </div>
-                    {item.active && (
-                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C6FF4D]" />
+                    {({ isActive }) => (
+                      <>
+                        <div className="flex items-center gap-2.5">
+                          <Icon
+                            className={`h-4 w-4 shrink-0 transition-colors ${
+                              isActive
+                                ? 'text-[#C6FF4D]'
+                                : 'text-[#AFA58F] group-hover:text-[#E8DFC9]'
+                            }`}
+                          />
+                          <span>{item.name}</span>
+                        </div>
+                        {isActive && (
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C6FF4D]" />
+                        )}
+                      </>
                     )}
-                  </button>
+                  </NavLink>
                 )
               })}
             </nav>
@@ -127,19 +153,22 @@ export default function Sidebar({ isOpen = false, onClose }) {
               Preferences
             </p>
             <nav className="space-y-1">
-              {utilityItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className="flex h-9 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 text-xs font-medium text-[#AFA58F] hover:bg-[#191916]/60 hover:text-[#E8DFC9] transition-colors cursor-pointer"
-                  >
-                    <Icon className="h-4 w-4 shrink-0" />
-                    <span>{item.name}</span>
-                  </button>
-                )
-              })}
+              <button
+                type="button"
+                onClick={() => handlePhase3Notice('Settings')}
+                className="flex h-9 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 text-xs font-medium text-[#AFA58F] hover:bg-[#191916]/60 hover:text-[#E8DFC9] transition-colors cursor-pointer text-left"
+              >
+                <Settings className="h-4 w-4 shrink-0" />
+                <span>Settings</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handlePhase3Notice('Support Desk')}
+                className="flex h-9 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 text-xs font-medium text-[#AFA58F] hover:bg-[#191916]/60 hover:text-[#E8DFC9] transition-colors cursor-pointer text-left"
+              >
+                <HelpCircle className="h-4 w-4 shrink-0" />
+                <span>Support</span>
+              </button>
             </nav>
           </div>
         </div>
@@ -155,10 +184,10 @@ export default function Sidebar({ isOpen = false, onClose }) {
                 <span className="truncate text-xs font-medium text-[#E8DFC9]">
                   Demo Workspace
                 </span>
-                <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#AFA58F]" />
+                <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#C6FF4D]" />
               </div>
               <p className="truncate text-[10px] text-[#777263]">
-                Demo Workspace · Sample Data
+                Phase 2 Core · Client-only
               </p>
             </div>
           </div>

@@ -45,7 +45,6 @@ export default function DashboardLayout({ children }) {
       {/* Main Workspace Area */}
       <div className="flex-1 flex flex-col min-w-0">
         <Header
-          title="Dashboard Overview"
           onToggleMobileMenu={() => setIsMobileSidebarOpen((prev) => !prev)}
         />
 

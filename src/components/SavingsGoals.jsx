@@ -1,4 +1,5 @@
-import { Target, Plus } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Target, Plus, ChevronRight } from 'lucide-react'
 import { useDashboard } from '../context/useDashboard'
 import { formatINR } from '../utils/formatters'
 import { calculateGoalCompletion } from '../utils/savingsGoals'
@@ -21,19 +22,28 @@ export default function SavingsGoals() {
           </h3>
           <p className="text-xs text-[#AFA58F]">Capital allocation targets</p>
         </div>
-        <button
-          type="button"
-          onClick={() => setIsNewGoalModalOpen(true)}
-          className="inline-flex items-center gap-1 text-xs font-medium text-[#AFA58F] hover:text-[#E8DFC9] hover:underline cursor-pointer transition-colors"
-        >
-          <Plus className="h-3.5 w-3.5" />
-          <span>New goal</span>
-        </button>
+        <div className="flex items-center gap-2.5">
+          <Link
+            to="/goals"
+            className="inline-flex items-center gap-0.5 text-xs font-medium text-[#AFA58F] hover:text-[#E8DFC9] hover:underline cursor-pointer transition-colors"
+          >
+            <span>View all</span>
+            <ChevronRight className="h-3 w-3" />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setIsNewGoalModalOpen(true)}
+            className="inline-flex items-center gap-1 text-xs font-medium text-[#C6FF4D] hover:text-[#b8f53d] cursor-pointer transition-colors"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            <span>New</span>
+          </button>
+        </div>
       </div>
 
       {/* Goal Cards */}
       <div className="space-y-3">
-        {savingsGoals.map((goal) => {
+        {savingsGoals.slice(0, 3).map((goal) => {
           const percentage = calculateGoalCompletion(goal.current, goal.target)
 
           return (

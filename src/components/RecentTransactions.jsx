@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import {
   Briefcase,
   Home,
@@ -45,14 +46,13 @@ export default function RecentTransactions() {
               : 'Recorded sample transactions for November 2026'}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => {}}
+        <Link
+          to="/transactions"
           className="inline-flex items-center gap-1 text-xs font-medium text-[#AFA58F] hover:text-[#E8DFC9] hover:underline cursor-pointer transition-colors"
         >
           <span>View all</span>
           <ChevronRight className="h-3.5 w-3.5" />
-        </button>
+        </Link>
       </div>
 
       {/* Transaction List or Empty State */}

@@ -147,7 +147,10 @@ export function createTransactionRecord(input = {}) {
     category,
     date: input.date || timeString,
     amount: Number(input.amount),
-    type: input.type === 'income' ? 'income' : 'expense',
+    type: input.type === 'income' ? 'income' : input.type === 'transfer' ? 'transfer' : 'expense',
+    accountId: input.accountId || 'acc-1',
+    toAccountId: input.toAccountId || undefined,
+    notes: input.notes ? input.notes.trim() : undefined,
     iconName: categoryIcons[category] || 'CreditCard',
     status: 'Completed',
   }

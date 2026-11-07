@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Download, BookOpen } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import CashFlowChart from '../components/CashFlowChart'
@@ -81,12 +82,12 @@ export default function Dashboard() {
             <p className="text-xs text-[#AFA58F] leading-relaxed mb-3">
               Standard guidelines suggest reserving <strong className="text-[#E8DFC9] font-medium">50%</strong> for essential needs, <strong className="text-[#E8DFC9] font-medium">30%</strong> for discretionary expenses, and allocating at least <strong className="text-[#C6FF4D] font-medium">20%</strong> toward long-term savings.
             </p>
-            <button
-              type="button"
-              className="text-xs font-medium text-[#AFA58F] hover:text-[#E8DFC9] hover:underline cursor-pointer transition-colors"
+            <Link
+              to="/academy/budgeting-50-30-20"
+              className="inline-block text-xs font-medium text-[#AFA58F] hover:text-[#C6FF4D] hover:underline cursor-pointer transition-colors"
             >
               Read full budget allocation guide →
-            </button>
+            </Link>
           </div>
         </div>
       </section>

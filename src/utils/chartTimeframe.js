@@ -25,3 +25,4 @@ export function sliceCashFlowByTimeframe(history = [], timeframe = '6M') {
       return history.slice(-6)
   }
 }
+

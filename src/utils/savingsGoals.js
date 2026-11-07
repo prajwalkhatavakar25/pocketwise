@@ -73,3 +73,4 @@ export function createSavingsGoalRecord(input = {}) {
     color: input.color || randomColor,
   }
 }
+

@@ -80,3 +80,4 @@ describe('Savings Goals Operations', () => {
     assert.ok(goal.color, 'Should assign a theme accent color')
   })
 })
+
