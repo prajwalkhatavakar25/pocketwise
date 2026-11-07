@@ -1,0 +1,26 @@
+/* PocketWise 2.0 Fintech Stylesheet - Deep Black, Warm Beige & Neon Lime */
+
+/* Consistent custom scrollbars for minimal dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A09;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #302F28;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777263;
+}
+
+/* Ensure no accidental horizontal scrollbars */
+html, body {
+  overflow-x: hidden;
+  background-color: #0A0A09;
+}

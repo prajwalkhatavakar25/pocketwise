@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #0A0A09;
+  --color-bg-sidebar: #121210;
+  --color-bg-card: #191916;
+  --color-bg-elevated: #211F1A;
+  --color-border-subtle: #302F28;
+
+  --color-beige-primary: #E8DFC9;
+  --color-beige-secondary: #AFA58F;
+  --color-beige-muted: #777263;
+
+  --color-neon-primary: #C6FF4D;
+  --color-neon-muted: #9CCB39;
+  --color-neon-olive: #657343;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #0A0A09;
+  color: #E8DFC9;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
